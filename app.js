@@ -44,7 +44,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret:"key",cookie:{maxAge:600000}}))
+// app.use(session({secret:"key",cookie:{maxAge:600000}}))
+app.use(session({
+  secret: 'Key',
+  resave: false, // set to false to avoid the deprecated warning
+  saveUninitialized: false, // set to false to avoid the deprecated warning
+}));
+
 app.use(nocache());
 
 app.use(bodyParser.urlencoded({extended:false}))

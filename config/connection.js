@@ -1,3 +1,5 @@
+require('dotenv').config(); 
+
 const mongoClient=require('mongodb').MongoClient
 
 
@@ -8,7 +10,8 @@ const state={
 
 
 module.exports.connect = (done)=> {
-  const url='mongodb://0.0.0.0:27017' 
+  const url=process.env.MONGODB_ACCOUNT
+  // const url='mongodb://0.0.0.0:27017' 
   const dbname='foody'
   mongoClient.connect(url, async (err,data)=> {
     if (err) return err;

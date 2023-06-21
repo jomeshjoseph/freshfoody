@@ -54,15 +54,30 @@ module.exports={
         })
       },
 
-      getallcategory:()=>{
+    //   getallcategory:()=>{
 
-        return new Promise(async(resolve,reject)=>{
+    //     return new Promise(async(resolve,reject)=>{
 
-            let getcategory=await db.get().collection(collections.CATEGORY_COLLECTION).find().sort({date:-1}).toArray()
-            resolve(getcategory)
-        })
+    //         let getcategory=await db.get().collection(collections.CATEGORY_COLLECTION).find().sort({date:-1}).toArray()
+    //         resolve(getcategory)
+    //     })
+    // }
+    getallcategory: () => {
+      return new Promise(async (resolve, reject) => {
+        try {
+          let getcategory = await db
+            .get()
+            .collection(collections.CATEGORY_COLLECTION)
+            .find()
+            .sort({ date: -1 })
+            .toArray();
+          resolve(getcategory);
+        } catch (error) {
+          reject(error);
+        }
+      });
     }
-
+    
 
 
 
